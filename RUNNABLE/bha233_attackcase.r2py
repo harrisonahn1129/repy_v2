@@ -1,0 +1,93 @@
+#--------------------------------------- Open File Based On Default (Solved) --------------------------
+# Clean up if the files exist
+if "default" in listfiles():
+  removefile("default")
+if "testfile.txt" in listfiles():
+    removefile("testfile.txt")
+if "random" in listfiles():
+    removefile("random")
+
+# Create a default file
+default = openfile("default", True)
+
+# Create a randaom file and close
+random = openfile("random", True)
+random.close()
+
+good = openfile("good", True)
+good.close()
+
+# Create a random file and keep opened
+test = openfile('test', True)
+
+
+
+# Initial write to default
+default.writeat("TEMPLATE", 0)
+
+# Close default
+default.close()
+
+# Open a file that doesn't exist
+myfile = openfile("testfile.txt", False)
+
+# Read from the file. 
+# Passing None as first argument indicates that we want to read the whole file from offset 0.
+assert myfile.readat(None, 0) == "TEMPLATE"
+
+# # Close the file
+myfile.close()
+
+test1 = openfile("testing", True)
+
+removefile('default')
+
+test2 = openfile('removed', True)
+test2.close()
+
+default2 = openfile('default', True)
+
+test.close()
+
+default2.writeat("TEMPLATE", 0)
+
+test3 = openfile("writing_test", True)
+
+# default2.close()
+
+# removefile('default')
+
+
+#====================================================================================Close()===============================================
+#------------------------------------------------- Double Close (Solved vv) ---------------------------------
+# Close the closed file
+#myfile.close()
+
+#===================================================================================Openfile()==========================================
+#-------------------------------------------------- Check File Name Format (Solved) --------------------------------------------------------
+#create_test = openfile("", False)
+#create_test1 = openfile(".", False)
+#create_test2 = openfile("a!", False)
+#create_test3 = openfile("TestCase!", False)
+#create_test4 = openfile(" ", False)
+
+#-------------------------------------------------- Check If File Already Opened (Solved) ---------------------------------------------------
+#myfile = openfile("testfile.txt", True)
+#myfile1 = openfile("testfile.txt", True)
+#myfile2 = openfile("testfile.txt", True)
+
+#--------------------------------------------------- Check If File Is Not (Solved) ------------------------------------------
+# if "default" in listfiles():
+#    removefile("default")
+# test = openfile("random", False)
+
+#--------------------------------------------------- Resource Exhausted Error ----------------------------------------------
+# Don't know how to test. Possible cases are when too many files are opened.
+
+#================================================================================Readat()===================================================
+#---------------------------------------------------------- If Arguments Negative ---------------------------------
+#test = openfile("testfile.txt", True)
+#test.readat(-1, 3)
+#test.readat(-1, -1)
+
+#===============================================================================Remove All When Default====================
